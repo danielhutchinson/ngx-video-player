@@ -12,20 +12,11 @@ import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
   ]
 })
 export class VideoPlayerComponent implements AfterViewInit {
-  @Input() public youtubeVideoId: string;
+  @Input() public thumbnailSrc: string;
+  @Input() public videoSrc: string;
+
   public showVideoModal: boolean;
   public animationParameters: VideoPlayerAnimationParameters;
-
-  constructor(private sanitizer: DomSanitizer) {
-  }
-
-  public get thumbnailUrl(): string {
-    return `https://img.youtube.com/vi/${this.youtubeVideoId}/hqdefault.jpg`;
-  }
-
-  public get embedUrl(): SafeUrl {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${this.youtubeVideoId}?autoplay=1`);
-  }
 
   @ViewChild('thumbnail', { static: false })
   private thumbnailElement: ElementRef;

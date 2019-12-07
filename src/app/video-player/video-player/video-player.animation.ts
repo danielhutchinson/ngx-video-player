@@ -21,8 +21,8 @@ const expandFromToStart = {
 const expandFromToEnd = {
   top: '50%',
   left: '50%',
-  width: '80%',
-  height: '65%',
+  width: '800px',
+  height: '450px',
   transform: 'translate(-50%, -50%)'
 };
 
