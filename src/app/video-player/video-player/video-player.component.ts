@@ -8,7 +8,8 @@ import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
   styleUrls: ['./video-player.component.scss'],
   animations: [
     VideoPlayerAnimation.fadeInOut,
-    VideoPlayerAnimation.expandFromTo
+    VideoPlayerAnimation.expandFromTo,
+    VideoPlayerAnimation.thumbnailInOut
   ]
 })
 export class VideoPlayerComponent implements AfterViewInit {

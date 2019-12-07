@@ -1,9 +1,12 @@
 <div class="screen-fade" *ngIf="showVideoModal" [@fadeInOut] (click)="closeVideo()"></div>
 
-<div class="thumbnail" #thumbnail *ngIf="!showVideoModal">
-  <img class="play-icon" src="/assets/icon-play-96.png" alt="Play Icon" (click)="openVideo()">
-  <div class="fader"></div>
-  <img class="thumbnail-image" [src]="thumbnailSrc" alt="Video Thumbnail">
+<div *ngIf="!showVideoModal" [@thumbnailInOut]>
+  <div class="thumbnail" #thumbnail>
+
+    <img class="play-icon" src="/assets/icon-play-96.png" alt="Play Icon" (click)="openVideo()">
+    <div class="fader"></div>
+    <img class="thumbnail-image" [src]="thumbnailSrc" alt="Video Thumbnail">
+  </div>
 </div>
 
 <div class="video"
@@ -14,6 +17,6 @@
       }}">
   <div class="close-button" (click)="closeVideo()">&times;</div>
   <video autoplay controls>
-    <source type="video/mp4" [src]="videoSrc" />
+    <source type="video/mp4" [src]="videoSrc"/>
   </video>
 </div>

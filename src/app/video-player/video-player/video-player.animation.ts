@@ -1,4 +1,4 @@
-import {animate, style, transition, trigger} from '@angular/animations';
+import {animate, group, query, stagger, style, transition, trigger} from '@angular/animations';
 
 export interface VideoPlayerAnimationParameters {
   readonly startingPositionTop: string;
@@ -40,6 +40,22 @@ export const VideoPlayerAnimation = {
     transition(':leave', [
       style({opacity: 1}),
       animate(animateTimeStandard, style({opacity: 0}))
+    ])
+  ]),
+
+  thumbnailInOut: trigger('thumbnailInOut', [
+    transition(':enter', [
+      group([
+
+        query('.thumbnail', [
+          style({opacity: 0}),
+          animate(animateTimeFast, style({opacity: 1}))
+        ]),
+        query('.play-icon', [
+          style({opacity: 0, margin: '10px 0 0 0'}),
+          animate(animateTimeStandard, style({opacity: 1, margin: '0'}))
+        ])
+      ])
     ])
   ]),
 
