@@ -1,4 +1,4 @@
-import {animate, group, query, stagger, style, transition, trigger} from '@angular/animations';
+import {animate, group, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 
 export interface VideoPlayerAnimationParameters {
   readonly startingPositionTop: string;
@@ -14,7 +14,7 @@ const expandFromToStart = {
   top: '{{startingPositionTop}}',
   left: '{{startingPositionLeft}}',
   width: 350,
-  height: 266,
+  height: 200,
   transform: 'none'
 };
 
@@ -23,11 +23,11 @@ const expandFromToEnd = {
   left: '50%',
   width: '800px',
   height: '450px',
-  transform: 'translate(-50%, -50%)'
+  transform: 'translate(-50%, -50%)',
 };
 
-const animateTimeStandard = '350ms ease-out';
-const animateTimeFast = '150ms ease-out';
+const animateTimeStandard = '350ms cubic-bezier(0.0, 0.0, 0.2, 1)';
+const animateTimeFast = '150ms cubic-bezier(0.0, 0.0, 0.2, 1)';
 
 
 export const VideoPlayerAnimation = {
@@ -66,7 +66,10 @@ export const VideoPlayerAnimation = {
     ], {params: animationParameters}),
     transition(':leave', [
       style(expandFromToEnd),
-      animate(animateTimeFast, style(expandFromToStart))
+      sequence([
+        animate(animateTimeFast, style(expandFromToStart)),
+        animate(animateTimeFast, style({ opacity: 0 }))
+      ])
     ], {params: animationParameters}),
   ])
 };
